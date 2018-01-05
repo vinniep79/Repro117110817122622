@@ -16,14 +16,18 @@ namespace WorkerRole1
         {
             Trace.TraceInformation("WorkerRole1 is running");
 
-            try
-            {
-                this.RunAsync(this.cancellationTokenSource.Token).Wait();
-            }
-            finally
-            {
-                this.runCompleteEvent.Set();
-            }
+            Trace.WriteLine("Inside WorkerRole.RunAsync()");
+            // See app.config & https://docs.postman-echo.com/ for details
+            ApiResource resource = new ApiResource(new Config());
+
+            Trace.WriteLine("Executing HTTP GET");
+
+            var result = resource.GetAsync<PostManResponse>("https://postman-echo.com/basic-auth").Result;
+
+            Trace.WriteLine($"HTTP GET responded with authenticated={result.authenticated}");
+
+            // VP - I'm just going to let this run once and then exit.
+
         }
 
         public override bool OnStart()
@@ -51,28 +55,6 @@ namespace WorkerRole1
             base.OnStop();
 
             Trace.TraceInformation("WorkerRole1 has stopped");
-        }
-
-        private async Task RunAsync(CancellationToken cancellationToken)
-        {
-            Trace.WriteLine("Inside WorkerRole.RunAsync()");
-            // See app.config & https://docs.postman-echo.com/ for details
-            ApiResource resource = new ApiResource(new Config());
-
-            Trace.WriteLine("Executing HTTP GET");
-
-            var result = await resource.GetAsync<PostManResponse>("https://postman-echo.com/basic-auth");
-
-            Trace.WriteLine($"HTTP GET responded with authenticated={result.authenticated}");
-
-            // VP - I'm just going to let this run once and then exit.
-
-            //// TODO: Replace the following with your own logic.
-            //while (!cancellationToken.IsCancellationRequested)
-            //{
-            //    Trace.TraceInformation("Working");
-            //    await Task.Delay(1000);
-            //}
         }
     }
 }
