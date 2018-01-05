@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using WorkerRole1;
 
-namespace ConsoleApp
+namespace ConsoleApp1
 {
     class Program
     {
@@ -19,6 +19,9 @@ namespace ConsoleApp
 
             Trace.WriteLine("Invoking role.Run()...");
             role.Run();
+
+
+            Trace.WriteLine("Hit any key to exit.");
             Console.ReadKey();
         }
     }

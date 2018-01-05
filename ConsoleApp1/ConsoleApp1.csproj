@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2EB8EE63-FB5E-4754-B7CF-A03E0604BDC2}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FeedAccess</RootNamespace>
-    <AssemblyName>FeedAccess</AssemblyName>
+    <ProjectGuid>{B8432072-FC4B-42D2-93CF-180F908E9A84}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ConsoleApp1</RootNamespace>
+    <AssemblyName>ConsoleApp1</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -36,31 +37,26 @@
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ApiResource.cs" />
-    <Compile Include="Config.cs" />
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SDKs\Azure\.NET SDK\v2.9\ref\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CsvHelper">
-      <Version>2.16.3</Version>
-    </PackageReference>
-    <PackageReference Include="Google.Apis.Drive.v3">
-      <Version>1.28.0.946</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AspNet.WebApi.Core">
-      <Version>5.2.3</Version>
-    </PackageReference>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web" />
+    <ProjectReference Include="..\WorkerRole1\WorkerRole1.csproj">
+      <Project>{28d2d553-79d4-4144-8207-f33c7294d3ac}</Project>
+      <Name>WorkerRole1</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

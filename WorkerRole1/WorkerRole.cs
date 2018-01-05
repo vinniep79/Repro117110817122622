@@ -65,12 +65,14 @@ namespace WorkerRole1
 
             Trace.WriteLine($"HTTP GET responded with authenticated={result.authenticated}");
 
-            // TODO: Replace the following with your own logic.
-            while (!cancellationToken.IsCancellationRequested)
-            {
-                Trace.TraceInformation("Working");
-                await Task.Delay(1000);
-            }
+            // VP - I'm just going to let this run once and then exit.
+
+            //// TODO: Replace the following with your own logic.
+            //while (!cancellationToken.IsCancellationRequested)
+            //{
+            //    Trace.TraceInformation("Working");
+            //    await Task.Delay(1000);
+            //}
         }
     }
 }
