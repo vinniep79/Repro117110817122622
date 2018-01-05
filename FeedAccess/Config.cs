@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace ContentStripeApi.FeedAccess
+namespace FeedAccess
 {
     public class Config
     {

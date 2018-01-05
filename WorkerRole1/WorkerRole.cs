@@ -1,4 +1,4 @@
-using ContentStripeApi.FeedAccess;
+using FeedAccess;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using System.Diagnostics;
 using System.Net;
